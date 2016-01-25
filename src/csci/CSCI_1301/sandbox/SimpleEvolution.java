@@ -1,8 +1,5 @@
-package csci.csci1301.sandbox;
+package csci.CSCI_1301.sandbox;
 
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by Jacob on 1/13/2016.
@@ -81,7 +78,7 @@ public class SimpleEvolution {
     }
 
     public static void main(String[] args){
-        int runs = 1000;
+        int runs = 1;
         long[] times = new long[runs];
         int[] generations = new int[runs];
 
@@ -106,7 +103,7 @@ public class SimpleEvolution {
 
         System.out.printf(
                 "Completed %d total runs.\n" +
-                "Average Generation Count: %f" +
+                "Average Generation Count: %f\n" +
                 "Average Time: %f\n", runs, (double)(genSum/runs), (double)(timeSum/runs));
     }
 
