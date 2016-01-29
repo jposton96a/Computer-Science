@@ -3,11 +3,11 @@ package csci.CSCI_1301.labs;
 import java.util.Scanner;
 
 /**
- * FootToMeter:
+ * Lab02_FootToMeter:
  * Simple class to convert from feet to meters
  * Created by Jacob on 1/22/2016.
  */
-public class FootToMeter {
+public class Lab02_FootToMeter {
     private static final double CONVERSION_FACTOR = 0.305;
 
     public static void main(String[] args)
@@ -18,7 +18,7 @@ public class FootToMeter {
 
         System.out.print("Enter the length in feet: ");
         foot = userInput.nextDouble();
-        meter = foot * FootToMeter.CONVERSION_FACTOR;
+        meter = foot * Lab02_FootToMeter.CONVERSION_FACTOR;
 
         System.out.printf("Imperial: %.5f ft\n", foot);
         System.out.printf("Metric:   %.5f m\n", meter);

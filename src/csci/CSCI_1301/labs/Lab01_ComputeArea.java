@@ -3,7 +3,7 @@ package csci.CSCI_1301.labs;
 /**
  * Created by Jacob on 1/15/2016.
  */
-public class ComputeArea {
+public class Lab01_ComputeArea {
     public static void main(String[] args){
         double radius = 10;
         double area = Math.PI * radius*radius;
