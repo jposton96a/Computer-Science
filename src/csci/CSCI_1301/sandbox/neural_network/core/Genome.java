@@ -1,5 +1,7 @@
 package csci.CSCI_1301.sandbox.neural_network.core;
 
+import java.util.Random;
+
 /**
  * Created by jposton on 1/29/16.
  */
@@ -33,6 +35,12 @@ public class Genome {
             float[] newGeneSeq = new float[g1.getSize()];
         }
         return null;
+    }
+
+    private double getGaussianRandom(float mean, float stdDeviation){
+        Random r = new Random();
+        return r.nextGaussian() * stdDeviation + mean;;
+
     }
 
     public float[] getSequence(){
