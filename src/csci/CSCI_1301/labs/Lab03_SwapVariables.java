@@ -2,7 +2,6 @@ package csci.CSCI_1301.labs;
 
 import javax.swing.JOptionPane;
 import java.util.Calendar;
-import java.util.Scanner;
 
 /**
  * Created by jposton on 1/29/16.

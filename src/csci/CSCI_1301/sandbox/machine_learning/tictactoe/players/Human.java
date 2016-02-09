@@ -1,7 +1,7 @@
-package csci.CSCI_1301.sandbox.neural_network.tictactoe.players;
+package csci.CSCI_1301.sandbox.machine_learning.tictactoe.players;
 
-import csci.CSCI_1301.sandbox.neural_network.tictactoe.Board;
-import csci.CSCI_1301.sandbox.neural_network.tictactoe.Player;
+import csci.CSCI_1301.sandbox.machine_learning.tictactoe.Board;
+import csci.CSCI_1301.sandbox.machine_learning.tictactoe.Player;
 
 import java.util.Scanner;
 
