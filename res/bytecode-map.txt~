@@ -1,0 +1,205 @@
+nop 0 
+aconst_null 1 
+iconst_m1 2 
+iconst_0 3 
+iconst_1 4 
+iconst_2 5 
+iconst_3 6 
+iconst_4 7 
+iconst_5 8 
+lconst_0 9 
+lconst_1 0a 
+fconst_0 0b 
+fconst_1 0c 
+fconst_2 0d 
+dconst_0 0e 
+dconst_1 0f 
+bipush 10 1
+sipush 11 2
+ldc 12 1
+ldc_w 13 2
+ldc2_w 14 2
+iload 15 1
+lload 16 1
+fload 17 1
+dload 18 1
+aload 19 1
+iload_0 1a 
+iload_1 1b 
+iload_2 1c 
+iload_3 1d 
+lload_0 1e 
+lload_1 1f 
+lload_2 20 
+lload_3 21 
+fload_0 22 
+fload_1 23 
+fload_2 24 
+fload_3 25 
+dload_0 26 
+dload_1 27 
+dload_2 28 
+dload_3 29 
+aload_0 2a 
+aload_1 2b 
+aload_2 2c 
+aload_3 2d 
+iaload 2e 
+laload 2f 
+faload 30 
+daload 31 
+aaload 32 
+baload 33 
+caload 34 
+saload 35 
+istore 36 1
+lstore 37 1
+fstore 38 1
+dstore 39 1
+astore 3a 1
+istore_0 3b 
+istore_1 3c 
+istore_2 3d 
+istore_3 3e 
+lstore_0 3f 
+lstore_1 40 
+lstore_2 41 
+lstore_3 42 
+fstore_0 43 
+fstore_1 44 
+fstore_2 45 
+fstore_3 46 
+dstore_0 47 
+dstore_1 48 
+dstore_2 49 
+dstore_3 4a 
+astore_0 4b 
+astore_1 4c 
+astore_2 4d 
+astore_3 4e 
+iastore 4f 
+lastore 50 
+fastore 51 
+dastore 52 
+aastore 53 
+bastore 54 
+castore 55 
+sastore 56 
+pop 57 
+pop2 58 
+dup 59 
+dup_x1 5a 
+dup_x2 5b 
+dup2 5c 
+dup2_x1 5d 
+dup2_x2 5e 
+swap 5f 
+iadd 60 
+ladd 61 
+fadd 62 
+dadd 63 
+isub 64 
+lsub 65 
+fsub 66 
+dsub 67 
+imul 68 
+lmul 69 
+fmul 6a 
+dmul 6b 
+idiv 6c 
+ldiv 6d 
+fdiv 6e 
+ddiv 6f 
+irem 70 
+lrem 71 
+frem 72 
+drem 73 
+ineg 74 
+lneg 75 
+fneg 76 
+dneg 77 
+ishl 78 
+lshl 79 
+ishr 7a 
+lshr 7b 
+iushr 7c 
+lushr 7d 
+iand 7e 
+land 7f 
+ior 80 
+lor 81 
+ixor 82 
+lxor 83 
+iinc 84 2
+i2l 85 
+i2f 86 
+i2d 87 
+l2i 88 
+l2f 89 
+l2d 8a 
+f2i 8b 
+f2l 8c 
+f2d 8d 
+d2i 8e 
+d2l 8f 
+d2f 90 
+i2b 91 
+i2c 92 
+i2s 93 
+lcmp 94 
+fcmpl 95 
+fcmpg 96 
+dcmpl 97 
+dcmpg 98 
+ifeq 99 2
+ifne 9a 2
+iflt 9b 2
+ifge 9c 2
+ifgt 9d 2
+ifle 9e 2
+if_icmpeq 9f 2
+if_icmpne a0 2
+if_icmplt a1 2
+if_icmpge a2 2
+if_icmpgt a3 2
+if_icmple a4 2
+if_acmpeq a5 2
+if_acmpne a6 2
+goto a7 2
+jsr a8 2
+ret a9 1
+tableswitch aa 4+
+lookupswitch ab 4+
+ireturn ac 
+lreturn ad 
+freturn ae 
+dreturn af 
+areturn b0 
+return b1 
+getstatic b2 2
+putstatic b3 2
+getfield b4 2
+putfield b5 2
+invokevirtual b6 2
+invokespecial b7 2
+invokestatic b8 2
+invokeinterface b9 4
+invokedynamic ba 4
+new bb 2
+newarray bc 1
+anewarray bd 2
+arraylength be 
+athrow bf 
+checkcast c0 2
+instanceof c1 2
+monitorenter c2 
+monitorexit c3 
+wide c4 3/5
+multianewarray c5 3
+ifnull c6 2
+ifnonnull c7 2
+goto_w c8 4
+jsr_w c9 4
+breakpoint ca 
+impdep1 fe 
+impdep2 ff 
