@@ -3,39 +3,57 @@ package csci.CSCI_1302.assignments.tictactoe;
 import java.util.Scanner;
 
 /**
+ * Tic Tac Toe
  * Created by jposton on 8/15/16.
  */
 public class TicTacToe {
 
+    // Describes the size of the board
+    private static final int ROW_COUNT = 3;
+
+    private static final int UNSET_VALUE = -1;
+    private static final int GAME_RESULT_TIE = 3;
+
+    private static final int PLAYER_ONE_ID = 0;
+    private static final int PLAYER_TWO_ID = 1;
+
     // First turn is player X
     // Second turn is player O
 
-    private int[] board; // Board is a 1d array which is 9 elements long
-    private int turnNumber; // Used to evaluate when game end and player turn
+    private int[] board; // Board is a 1d array to hold the players markers
+    private int turnNumber; // Used to evaluate game end and player's turn
     private boolean gameover; // Controls the main while loop
 
-    private Scanner consoleInput;
+    private Scanner consoleInput; // Scanner for user input through the console
 
     public static void main(String[] args){
         TicTacToe t = new TicTacToe();
         t.run();
     }
 
+    /**
+     * Tic Tac Toe Constructor
+     * Initializes the board and scanner. Then sets all variables to their starting values.
+     */
     public TicTacToe(){
-        board = new int[9];
+        board = new int[ROW_COUNT*ROW_COUNT];
+        consoleInput = new Scanner(System.in);
+
         turnNumber = 0;
         gameover = false;
 
         for (int i = 0; i < board.length; i++)
-            board[i] = -1;
-
-        consoleInput = new Scanner(System.in);
+            board[i] = UNSET_VALUE;
     }
 
+    /**
+     * Main game loop that gets input from user, and attempts to make the move based
+     * on the user's choice.
+     */
     public void run(){
 
         while(!gameover) {
-            int intChoice = -1;
+            int intChoice = UNSET_VALUE;
 
             System.out.println("--------------------------------------------------------------");
             System.out.println("Current Board:");
@@ -78,13 +96,13 @@ public class TicTacToe {
             // Determine how the game should continue based on the result of getWinningPlayer()
             switch(winningPlayer){
 
-                // -1 indicates that a win was not detected
-                case -1:
+                // UNSET_VALUE (-1) indicates that a win was not detected
+                case UNSET_VALUE:
                     turnNumber++;
                     break;
 
-                // 3 indicates the that board is full, but a win was not detected (tie game)
-                case 3:
+                // GAME_RESULT_TIE (3) indicates the that board is full, but a win was not detected (tie game)
+                case GAME_RESULT_TIE:
                     gameover = true;
                     System.out.println("Game Tie! Nobody Wins.");
                     break;
@@ -101,7 +119,9 @@ public class TicTacToe {
 
         // If the method gets to this point, the chosen position was not valid
         System.err.printf("Your choice \"%s\" is not valid. Please enter a number from 0 to 8 and " +
-                    "make sure the spot is EMPTY", intChoice);
+                    "make sure the spot is EMPTY\n", intChoice);
+
+        // Return operation was not successful
         return false;
     }
 
@@ -120,61 +140,65 @@ public class TicTacToe {
     public int getWinningPlayer(int lastPlayPos){
 
         // If the move is included in either diagonal, check for each diagonal win
-        if(lastPlayPos % 2 == 0){
+        // All cells included in diagonal are always a multiple of ROW_COUNT+1 or ROW_COUNT-1
+        if(lastPlayPos % (ROW_COUNT+1) == 0 || lastPlayPos % (ROW_COUNT-1) == 0){
 
             // Check L->R Diagonal
             int winningPlayer = board[lastPlayPos];
-            for(int i = 0; i < 9; i += 4){
+            for(int i = 0; i < board.length; i += (ROW_COUNT+1)){
                 if(board[i] != winningPlayer){
-                    winningPlayer = -1;
+                    winningPlayer = UNSET_VALUE;
                     break;
                 }
             }
 
-            if(winningPlayer != -1)
+            if(winningPlayer != UNSET_VALUE)
                 return winningPlayer;
 
             // Check R->L Diagonal
             winningPlayer = board[lastPlayPos];
-            for(int i = 2; i <= 6; i += 2){
+            for(int i = ROW_COUNT-1; i <= ROW_COUNT*(ROW_COUNT-1); i += (ROW_COUNT-1)){
                 if(board[i] != winningPlayer){
-                    winningPlayer = -1;
+                    winningPlayer = UNSET_VALUE;
                     break;
                 }
             }
 
-            if(winningPlayer != -1)
+            if(winningPlayer != UNSET_VALUE)
                 return winningPlayer;
         }
 
         // Check Vertical Wins
         int winningPlayer = board[lastPlayPos];
-        for(int i = lastPlayPos%3; i < 9; i+=3){
+        // Find the start of the column and check consecutive vertical cells for a column
+        int firstOfColumn = lastPlayPos % ROW_COUNT; //
+        for(int i = firstOfColumn; i < board.length; i+=ROW_COUNT){
             if(board[i] != winningPlayer){
-                winningPlayer = -1;
+                winningPlayer = UNSET_VALUE;
                 break;
             }
         }
-        if(winningPlayer != -1)
+        if(winningPlayer != UNSET_VALUE)
             return winningPlayer;
 
         // Check Horizontal Wins
         winningPlayer = board[lastPlayPos];
-        int firstOfRow = (int)(lastPlayPos/3)*3; // Takes advantage of truncation to round to lowest multiple of 3
-        for(int i = 0; i < 3; i++){
+        // Find the start of the row and check consecutive cells for a full row
+        int firstOfRow = (int)(lastPlayPos/ROW_COUNT)*ROW_COUNT; // Takes advantage of truncation to round to lowest multiple of ROW_COUNT
+        for(int i = 0; i < ROW_COUNT; i++){
             if(board[firstOfRow + i] != winningPlayer){
-                winningPlayer = -1;
+                winningPlayer = UNSET_VALUE;
                 break;
             }
         }
-        if(winningPlayer != -1)
+        if(winningPlayer != UNSET_VALUE)
             return winningPlayer;
 
         // If the turnNumber is at or over 8, all the cells on the board are full
-        if(turnNumber >= 8)
-            return 3;
+        if(turnNumber >= board.length-1)
+            return GAME_RESULT_TIE;
 
-        return -1;
+        return UNSET_VALUE;
     }
 
     /**
@@ -186,31 +210,36 @@ public class TicTacToe {
      * @return            A boolean describing if the position is valid or not
      */
     public boolean isValidChoice(int intChoice){
-
-        if(intChoice != -1){ // Check that the user input was stored in the intChoice variable (-1 = unset)
-
-            return intChoice < board.length // check that the choice is less than max
-                    && intChoice >= 0 // check that choice is greater than min
-                    && this.board[intChoice] == -1; // check that place is not taken
-        }
-        return false;
+        return intChoice != UNSET_VALUE // check that the user input was stored in the intChoice variable (-1 = unset)
+                && intChoice < board.length // check that the choice is less than max
+                && intChoice >= 0 // check that choice is greater than min
+                && this.board[intChoice] == UNSET_VALUE; // check that place is not taken
     }
 
     /**
      * Prints the board to the terminal in a user-friendly format
      */
     public void printBoard(){
-        for(int i = 0; i < 9; i+=3){
-            if(i != 0)
-                System.out.println("---+---+---");
+        StringBuilder separatorLine = new StringBuilder();
+        for(int x = 0; x < ROW_COUNT; x++) {
+            if(x != 0)
+                separatorLine.append("+");
+            separatorLine.append("---");
+        }
 
-            for(int j = 0; j < 3; j++) {
+        for(int i = 0; i < board.length; i+=ROW_COUNT){
+
+            // Print the separating bar after the first row
+            if(i != 0)
+                System.out.println(separatorLine.toString());
+
+            for(int j = 0; j < ROW_COUNT; j++) {
                 char c;
                 switch (board[i + j]){
-                    case 0:
+                    case PLAYER_ONE_ID:
                         c = 'X';
                         break;
-                    case 1:
+                    case PLAYER_TWO_ID:
                         c = 'O';
                         break;
                     default:
@@ -218,6 +247,7 @@ public class TicTacToe {
                         break;
                 }
 
+                // Print the '|' after the first column
                 if(j != 0)
                     System.out.print("|");
 
